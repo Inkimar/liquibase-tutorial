@@ -2,14 +2,16 @@
 AUTHOR=ingimar.erlingsson-at-nrm.se
 LIQUIBASE_HOME=http://www.liquibase.org/
 
+TS := $(shell date '+%Y_%m_%d_%H_%M')
+
 LIQ_VER=3.5.3
 LIQUIBASE=liquibase-${LIQ_VER}-bin.zip
 
 MYSQL_VER=6.0.5
 MYSQL=mysql-connector-java-${MYSQL_VER}.jar
 MYSQL_DB=liquibase_tutorial
-MYSQL_USER=root
-MYSQL_PASSWORD=ingimar
+MYSQL_USER=xxx
+MYSQL_PASSWORD=yyy
 
 all: pre_info install_liquibase install_jdbc_mysql move_liquibase_prop run_liquibase post_info
 
@@ -39,7 +41,12 @@ database_mysql_create:
 	mysql -u ${MYSQL_USER} -p${MYSQL_PASSWORD} -e "create database ${MYSQL_DB};"
 
 database_mysql_drop:
-	mysql -u root -pingimar -e "drop database ${MYSQL_DB};"
+	mysql -u ${MYSQL_USER} -p${MYSQL_PASSWORD} -e "drop database ${MYSQL_DB};"
+
+database_mysql_test:
+	test -d backup || mkdir backup
+	mysqldump -u ${MYSQL_USER} -p${MYSQL_PASSWORD} ${MYSQL_DB} > backup/${MYSQL_DB}-dump-$(TS).sql
+
 
 post_info:
 	@echo "... "
