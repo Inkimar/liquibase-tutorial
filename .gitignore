@@ -6,3 +6,9 @@
 *.ear
 *.zip
 
+# from the liquibase-package
+*.txt
+liquibase
+liquibase.bat
+liquibase.spec
+sdk/*

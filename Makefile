@@ -16,7 +16,7 @@ pre_info:
 install_liquibase:
 	test -f liquibase.jar || \
 	(wget https://github.com/liquibase/liquibase/releases/download/liquibase-parent-3.5.3/${LIQUIBASE} && \
-	unzip ${LIQUIBASE} && rm liquibase-3.5.3-bin.zip )
+	unzip ${LIQUIBASE} && rm ${LIQUIBASE} )
 
 
 install_jdbc_mysql:
@@ -24,8 +24,8 @@ install_jdbc_mysql:
 	(wget http://central.maven.org/maven2/mysql/mysql-connector-java/6.0.5/${MYSQL} && \
 	mv ${MYSQL} lib)
 
-install_liquibase_prop:
-	mv liquibase.mysql.properties sdk/workspace
+move_liquibase_prop:
+	mv liquibase.inki.properties sdk/workspace
 
 database_mysql_create:
 	mysql -u ${MYSQL_USER} -p${MYSQL_PASSWORD} -e "create database ${MYSQL_DB};"
