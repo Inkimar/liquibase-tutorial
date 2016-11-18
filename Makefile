@@ -1,9 +1,12 @@
 #!make
 AUTHOR=ingimar.erlingsson-at-nrm.se
 LIQUIBASE_HOME=http://www.liquibase.org/
-LIQUIBASE=liquibase-3.5.3-bin.zip
 
-MYSQL=mysql-connector-java-6.0.5.jar
+LIQ_VER=3.5.3
+LIQUIBASE=liquibase-${LIQ_VER}-bin.zip
+
+MYSQL_VER=6.0.5
+MYSQL=mysql-connector-java-${MYSQL_VER}.jar
 MYSQL_DB=liquibase_tutorial
 MYSQL_USER=xxx
 MYSQL_PASSWORD=yyy
@@ -15,13 +18,13 @@ pre_info:
 
 install_liquibase:
 	test -f liquibase.jar || \
-	(wget https://github.com/liquibase/liquibase/releases/download/liquibase-parent-3.5.3/${LIQUIBASE} && \
+	(wget https://github.com/liquibase/liquibase/releases/download/liquibase-parent-${LIQ_VER}/${LIQUIBASE}) && \
 	unzip ${LIQUIBASE} && rm ${LIQUIBASE} )
 
 
 install_jdbc_mysql:
 	test -f lib/${MYSQL} || \
-	(wget http://central.maven.org/maven2/mysql/mysql-connector-java/6.0.5/${MYSQL} && \
+	(wget http://central.maven.org/maven2/mysql/mysql-connector-java/${MYSQL_VER}/${MYSQL} && \
 	mv ${MYSQL} lib)
 
 move_liquibase_prop:
