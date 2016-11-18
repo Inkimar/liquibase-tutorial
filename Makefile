@@ -25,7 +25,11 @@ install_jdbc_mysql:
 	mv ${MYSQL} lib)
 
 move_liquibase_prop:
-	mv liquibase.inki.properties sdk/workspace
+	mv liquibase.inki.properties sdk/workspace 
+	mv changelog-example.xml sdk/workspace/changelog/com/example/
+
+run_liquibase:
+	cd sdk/workspace && ../../liquibase --defaultsFile=liquibase.inki.properties update
 
 database_mysql_create:
 	mysql -u ${MYSQL_USER} -p${MYSQL_PASSWORD} -e "create database ${MYSQL_DB};"
