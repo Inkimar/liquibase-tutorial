@@ -8,8 +8,8 @@ LIQUIBASE=liquibase-${LIQ_VER}-bin.zip
 MYSQL_VER=6.0.5
 MYSQL=mysql-connector-java-${MYSQL_VER}.jar
 MYSQL_DB=liquibase_tutorial
-MYSQL_USER=xxx
-MYSQL_PASSWORD=yyy
+MYSQL_USER=root
+MYSQL_PASSWORD=ingimar
 
 all: pre_info install_liquibase install_jdbc_mysql move_liquibase_prop run_liquibase post_info
 
@@ -18,7 +18,7 @@ pre_info:
 
 install_liquibase:
 	test -f liquibase.jar || \
-	(wget https://github.com/liquibase/liquibase/releases/download/liquibase-parent-${LIQ_VER}/${LIQUIBASE}) && \
+	(wget https://github.com/liquibase/liquibase/releases/download/liquibase-parent-${LIQ_VER}/${LIQUIBASE} && \
 	unzip ${LIQUIBASE} && rm ${LIQUIBASE} )
 
 
