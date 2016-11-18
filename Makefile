@@ -8,7 +8,7 @@ MYSQL_DB=liquibase_tutorial
 MYSQL_USER=xxx
 MYSQL_PASSWORD=yyy
 
-all: pre_info install_liquibase install_jdbc_mysql post_info
+all: pre_info install_liquibase install_jdbc_mysql move_liquibase_prop run_liquibase post_info
 
 pre_info:
 	@echo "Installation of liquibase, (home ${LIQUIBASE_HOME})"
@@ -25,6 +25,7 @@ install_jdbc_mysql:
 	mv ${MYSQL} lib)
 
 move_liquibase_prop:
+	@echo "remember to update credentials for database"
 	mv liquibase.inki.properties sdk/workspace 
 	mv changelog-example.xml sdk/workspace/changelog/com/example/
 
