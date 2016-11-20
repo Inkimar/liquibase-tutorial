@@ -32,5 +32,8 @@ $make [all]
 1. fetches liquibase and unzips
 2. fetches the mysql-jdbc-jar
 3. copies liquibase.inki.properties and changelog-example.xml to the liquibase 'sdk'-directory
-4. runs liquibase (creates 1 table in the 'liquibase-tutorial'-database )
+4. runs liquibase (runs through the changeSets, affects the 'liquibase-tutorial'-database )
 5. makes a database-dump (mysqldump) to the 'backup'-directory.
+
+### Validate the Liquibase-execution
+Validate the 'run' by looking through the database and/or the backup/liquibase_tutorial-dump-<data-time>.sql
