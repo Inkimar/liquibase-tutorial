@@ -5,7 +5,7 @@ http://www.liquibase.org/ <br>
 Runs through the changelog-example.xml-file (only 1 changeSet to begin with) <br>
 
 ## Liquibase standalone
-This project has only been tested on GNU/Linux <br>
+This project has been tested on GNU/Linux (Linux Mint) <br>
 Using a Makefile (GNU Make 3.81 and GNU make 4.1 ) <br>
 Tested on MySQL ver 5.5 & ver 5.7 <br>
 
@@ -23,11 +23,11 @@ The name of the example database is 'liquibase-tutorial' <br>
 ### run the recipes in the Makefile
 
 create the database <br>
-$make db_mysql_create <br>
+$ make db_mysql_create <br>
 
 
 Run the 'all'-recipe<br>
-$make [all]
+$ make [all]
 
 1. fetches liquibase and unzips
 2. fetches the mysql-jdbc-jar
@@ -37,3 +37,8 @@ $make [all]
 
 ### Validate the Liquibase-execution
 Validate the 'run' by looking through the database and/or the backup/liquibase_tutorial-dump-<data-time>.sql
+
+### continue
+In this example the changeSet is wrttien in [XML-format](http://www.liquibase.org/documentation/xml_format.html) <br>
+To explore this tutorial, add a new changeSet to the file 'sdk/workspace/changelog/com/example/changelog-example.xml' and 'run' <br>
+$ make run_liquibase <br>
