@@ -1,6 +1,7 @@
 *.class
 *~
 *sql
+*html
 
 # Package Files #
 *.jar
