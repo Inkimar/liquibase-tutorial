@@ -39,6 +39,6 @@ $ make [all]
 Validate the 'run' by looking through the database and/or the backup/liquibase_tutorial-dump-<data-time>.sql
 
 ### continue
-In this example the changeSet is wrttien in [XML-format](http://www.liquibase.org/documentation/xml_format.html) <br>
+In this example the changeSet is written in [XML-format](http://www.liquibase.org/documentation/xml_format.html) <br>
 To explore this tutorial, add a new changeSet to the file 'sdk/workspace/changelog/com/example/changelog-example.xml' and 'run' <br>
 $ make run_liquibase <br>
