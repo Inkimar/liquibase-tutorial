@@ -1,4 +1,6 @@
 *.class
+*~
+*sql
 
 # Package Files #
 *.jar
