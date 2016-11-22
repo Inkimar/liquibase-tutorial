@@ -7,7 +7,8 @@ TS := $(shell date '+%Y_%m_%d_%H_%M')
 LIQ_VER=3.5.3
 LIQUIBASE=liquibase-${LIQ_VER}-bin.zip
 
-MYSQL_VER=6.0.5
+# NB: think twice before using mysql-connector-java version 6.x
+MYSQL_VER=5.1.40
 MYSQL=mysql-connector-java-${MYSQL_VER}.jar
 MYSQL_DB=liquibase_tutorial
 MYSQL_USER=xxx
@@ -36,6 +37,9 @@ cp_liquibase_prop:
 
 run_liquibase:
 	cd sdk/workspace && ../../liquibase --defaultsFile=liquibase.inki.properties update
+
+run_x:
+	cd sdk/workspace && ../../liquibase --defaultsFile=liquibase.inki.properties migrate
 
 db_mysql_create:
 	mysql -u ${MYSQL_USER} -p${MYSQL_PASSWORD} -e "create database IF NOT EXISTS ${MYSQL_DB};"
