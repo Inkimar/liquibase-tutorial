@@ -1,6 +1,8 @@
 #!make
 AUTHOR=ingimar.erlingsson-at-nrm.se
 LIQUIBASE_HOME=http://www.liquibase.org/
+include .env
+
 
 TS := $(shell date '+%Y_%m_%d_%H_%M')
 
@@ -11,10 +13,11 @@ LIQUIBASE=liquibase-${LIQ_VER}-bin.zip
 MYSQL_VER=5.1.40
 MYSQL=mysql-connector-java-${MYSQL_VER}.jar
 MYSQL_DB=liquibase_tutorial
-MYSQL_USER=xxx
-MYSQL_PASSWORD=yyy
+#MYSQL_USER=xxx
+#MYSQL_PASSWORD=yyy
 
-all: pre_info install_liquibase install_jdbc_mysql cp_liquibase_prop run_liquibase db_mysql_dump post_info
+all:
+#all: pre_info install_liquibase install_jdbc_mysql cp_liquibase_prop run_liquibase db_mysql_dump post_info
 
 pre_info:
 	@echo "Installation of liquibase, (home ${LIQUIBASE_HOME})"
@@ -30,7 +33,7 @@ install_jdbc_mysql:
 	(wget http://central.maven.org/maven2/mysql/mysql-connector-java/${MYSQL_VER}/${MYSQL} && \
 	mv ${MYSQL} lib)
 
-cp_liquibase_prop:
+copy_files:
 	@echo "remember to update credentials for database"
 	cp liquibase.inki.properties sdk/workspace 
 	cp changelog-example.xml sdk/workspace/changelog/com/example/
@@ -38,8 +41,19 @@ cp_liquibase_prop:
 run_liquibase:
 	cd sdk/workspace && ../../liquibase --defaultsFile=liquibase.inki.properties update
 
-run_x:
-	cd sdk/workspace && ../../liquibase --defaultsFile=liquibase.inki.properties migrate
+run_liquibase_theirs:
+	cd sdk/workspace && ../../liquibase --defaultsFile=liquibase.theirs.properties update
+
+run_liquibase_technet:
+	cd sdk/workspace && ../../liquibase --defaultsFile=liquibase.technetwork.properties update
+
+run_liquibase_master:
+	cp liquibase.inki._with_master.properties sdk/workspace
+	cd sdk/workspace && ../../liquibase --defaultsFile=liquibase.inki._with_master.properties update
+
+
+#run_x:
+#	cd sdk/workspace && ../../liquibase --defaultsFile=liquibase.inki.properties migrate
 
 db_mysql_create:
 	mysql -u ${MYSQL_USER} -p${MYSQL_PASSWORD} -e "create database IF NOT EXISTS ${MYSQL_DB};"

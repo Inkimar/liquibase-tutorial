@@ -11,7 +11,7 @@ Tested on MySQL ver 5.5 & ver 5.7 <br>
 
 
 ### before you start.
-Look through the Makefile ( update software-versons if you'd like to) <br>
+Look through the Makefile ( update the software-versions if you'd like to) <br>
 Set credentials for your database in the following 2 files <br>
 
 1. Makefile

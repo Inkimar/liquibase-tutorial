@@ -2,6 +2,8 @@
 *~
 *sql
 *html
+.env
+.Rhistory
 
 # Package Files #
 *.jar
